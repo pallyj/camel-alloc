@@ -1,7 +1,7 @@
 use core::{alloc::Layout, ptr::NonNull};
 
 use arrayvec::ArrayVec;
-use mu::VmSpace;
+use mu::{VmSpace, CapabilityBased, Credentials};
 use crate::chunk::Chunk;
 
 // Allows for 2 MB of total heap
@@ -31,7 +31,7 @@ impl Arena {
 	}
 
 	pub fn use_space(&mut self, space: &VmSpace) {
-		self.space = Some(*space.clone());
+		self.space = Some(space.clone_capability(Credentials::all()).unwrap());
 	}
 
 	#[allow(dead_code)]

@@ -11,7 +11,7 @@ mod global;
 
 pub use global::{init, memory_pressure};
 
-use mu::VmSpace;
+use mu::{VmSpace, CapabilityBased, Credentials};
 use spin::Mutex;
 
 use core::alloc::Allocator;
@@ -49,7 +49,7 @@ impl CamelAllocator {
 			panic!("ERROR: Can only initialize the allocator once");
 		}
 
-		*unlocked_space = Some(*space.clone());
+		*unlocked_space = Some(space.clone_capability(Credentials::all()).unwrap());
 
 		for arena in self.arenas.iter() {
 			arena.lock().use_space(unlocked_space.as_ref().unwrap());

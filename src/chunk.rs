@@ -39,7 +39,7 @@ impl Chunk {
 			return None
 		}
 
-		NonNull::new(unsafe { (self.start + offset).as_mut_slice(size) })
+		NonNull::new(unsafe { (self.start + offset).into_slice_mut(size) })
 	}
 
 	pub fn contains(&self, addr: usize) -> bool {
