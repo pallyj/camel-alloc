@@ -1,2 +1,4 @@
-# camel-alloc
-Allocator for rush
+# Camel Alloc
+
+A simple allocator for Rush
+

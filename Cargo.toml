@@ -1,0 +1,11 @@
+[package]
+name = "camel-alloc"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+spin = "0.9.1"
+arrayvec = { version = "0.7.2", default-features = false }
+mu = { git = "https://github.com/pallyj/mu.git" }
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
