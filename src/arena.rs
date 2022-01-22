@@ -14,7 +14,7 @@ pub struct Arena {
 	head: usize,
 	space: Option<VmSpace>,
 	//TODO: Refactor this
-	temporary_space: [u8; 0x1000],
+	temporary_space: [u8; 0x4000],
 	temporary_ptr: usize,
 }
 
@@ -25,7 +25,7 @@ impl Arena {
 			size: 0,
 			head: 0,
 			space: None,
-			temporary_space: [0u8; 0x1000],
+			temporary_space: [0u8; 0x4000],
 			temporary_ptr: 0
 		}
 	}

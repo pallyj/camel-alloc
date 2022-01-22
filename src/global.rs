@@ -29,8 +29,3 @@ pub fn memory_pressure() -> MemoryPressure {
 		leaked
 	}
 }
-
-#[alloc_error_handler]
-pub fn handle_alloc_error(_layout: core::alloc::Layout) -> ! {
-	panic!("Error Allocating");
-}
