@@ -1,6 +1,6 @@
 use core::ptr::NonNull;
 
-use mu::{VmObject, VAddr, MemoryFlags, VmSpace, MappingFlags};
+use mu::{VmObject, VAddr, MemoryFlags, VmSpace, MappingFlags, println};
 
 #[allow(dead_code)]
 pub struct Chunk {
@@ -16,7 +16,10 @@ impl Chunk {
 	pub fn new(base: usize, size: usize, space: &VmSpace) -> Self {
 		let backing = VmObject::new(size, MemoryFlags::RW).unwrap();
 
-		let start = space.map(0, &backing, 0, size, MappingFlags::RW).unwrap();
+		let start = match space.map(0, &backing, 0, size, MappingFlags::RW) {
+			Ok(a) => a,
+			Err(e) => {mu::dev::debugger::print_status(e); loop{}},
+		};
 
 		Self {
 			base,
